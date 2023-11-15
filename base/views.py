@@ -1,11 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import RegisterForm
+from django.contrib import messages
 from .models import Product
 
-products = [
-    {"id":1, "name":"iphone pro max 15"},
-    {"id":2, "name":"gun to kill your enemy"},
-    {"id":3, "name":"coka and marejuana"},
-        ]
 
 # Create your views here.
 def home(request):
@@ -32,3 +29,24 @@ def product(request,pk):
         "categories":categories,
         }
     return render(request,"base/product.html",context)
+
+def register(request):
+    title = "Create an Account"
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'You are registered successfully, please login to your account')
+            return redirect("home")
+    else:
+        form = RegisterForm()
+
+
+    context = {
+        "title":title,
+        "form":form
+    }
+    return render(request, "base/register.html", context)
+
+
+

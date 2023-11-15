@@ -3,6 +3,15 @@
 <h3>{{ product.id }} . <a href="{% url 'product' product.id %}">{{ product.name }}</a></h3>
 
 {% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags %} alert-{{message.tags}} {% endif %}">
+            {{message}}
+        </div>
+    {% endfor %}
+{% endif %}
+
 <div class="mb-5"></div>
 <div class="container for-you">
     <div class="heading heading-flex mb-3">

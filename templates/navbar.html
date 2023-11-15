@@ -41,7 +41,14 @@
                                                 </div><!-- End .header-menu -->
                                             </div>
                                         </li>
-                                        <li><a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a></li>
+
+                                        {% if user.is_authenticated %}
+                                        <li><a href="" >{{user.username}}</a></li>
+                                        <li><a href="{% url 'logout' %}" >Logout</a></li>
+                                        {% else %}
+                                        <li><a href="{% url 'register' %}" >Register</a></li>
+                                        <li><a href="{% url 'login' %}" ><i class="icon-user"></i>Login</a></li>
+                                        {% endif %}
                                     </ul>
                                 </li>
                             </ul><!-- End .top-menu -->
@@ -58,7 +65,7 @@
                                 <i class="icon-bars"></i>
                             </button>
                             
-                            <a href="\" class="logo">
+                            <a href="{% url 'home' %}" class="logo">
                                 <img src="{% static 'assets/images/demos/demo-4/logo.png' %}" alt="Molla Logo" width="105" height="25">
                             </a>
                         </div><!-- End .header-left -->

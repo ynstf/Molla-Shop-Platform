@@ -11,8 +11,11 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
-    description = models.TextField()
+    short_description = models.TextField()
+    description = models.TextField(null=True,blank=True)
     price = models.FloatField()
+    information = models.TextField(null=True,blank=True)
+    shipping_roles = models.TextField(null=True,blank=True)
 
     """def promo(self):
         return self.price"""
@@ -20,7 +23,10 @@ class Product(models.Model):
 
     category = models.ManyToManyField(Category)
     image = models.ImageField(upload_to="products_images/",default='/static/default_product.png')
-
+    product_side = models.ImageField(upload_to="products_images/",default='/static/default_product.png')
+    product_cross = models.ImageField(upload_to="products_images/",default='/static/default_product.png')
+    product_with_model = models.ImageField(upload_to="products_images/",default='/static/default_product.png')
+    product_back = models.ImageField(upload_to="products_images/",default='/static/default_product.png')
 
     def __str__(self):
         return self.name
