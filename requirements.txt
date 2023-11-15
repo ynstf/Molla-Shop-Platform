@@ -15,7 +15,7 @@ charset-normalizer==3.2.0
 click==8.1.5
 colorama==0.4.6
 crypto==1.4.1
-Crypto.Cipher==1
+Crypto.Cipher
 dataclasses==0.6
 distlib==0.3.6
 Django==3.2.19
