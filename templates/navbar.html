@@ -43,7 +43,22 @@
                                         </li>
 
                                         {% if user.is_authenticated %}
-                                        <li><a href="" >{{user.username}}</a></li>
+                                        <li>
+                                        <div class="dropdown header-top-dropdown">
+                                            <a class="dropdown-toggle" id="myaccount" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                                {{user.username}}
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="myaccount">
+                                                <a class="dropdown-item" href="my-account.html">my account</a>
+                                                <a class="dropdown-item" href="{% url 'listing' %}"> Listing new product
+                                                </a>
+                                                <a class="dropdown-item" href="login-register.html">add new category</a>
+                                            </div>
+                                        </div>
+                                        </li>
+
                                         <li><a href="{% url 'logout' %}" >Logout</a></li>
                                         {% else %}
                                         <li><a href="{% url 'register' %}" >Register</a></li>

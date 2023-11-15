@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="mb-5"></div>
+<div class="container">
+    <div class="form-box">
+        <div class="form-tab">
+            <ul class="nav nav-pills nav-fill" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="register-tab-2" data-toggle="tab" href="#register-2" role="tab" aria-controls="register-2" aria-selected="true">New Product</a>
+                </li>
+            </ul>
+
+                <div class="tab-pane fade show active" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
+                    <form method="POST" enctype='multipart/form-data'>
+                        {% csrf_token %}
+
+                        <!-- errors -->
+                        {% if product_form.non_field_errors %}
+                            {% for error in product_form.non_field_errors %}
+                                {% if forloop.last %}
+                                <small class="text-danger">{{ error }}</small>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+
+                        {% for field in product_form %}
+                        <div class="form-group">
+                            <label for="register-email-2">{{field.label_tag}} *</label>
+                            {% render_field field class="form-control" %}
+                            <small class="text-danger">{{ field.errors }}</small>
+                            
+                        </div><!-- End .form-group -->
+                        {% endfor %}
+
+                        <div class="form-footer">
+                            <button type="submit" class="btn btn-outline-primary-2">
+                                <span>Add Product</span>
+                            </button>
+                            <!-- End .custom-checkbox -->
+                        </div><!-- End .form-footer -->
+                    </form>
+                </div><!-- .End .tab-pane -->
+            </div><!-- End .tab-content -->
+        </div><!-- End .form-tab -->
+    </div>
+</div>
+{% endblock %}

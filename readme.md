@@ -6,6 +6,7 @@ Intelligent E-commerce Platform: NLP, Computer Vision, and Recommendations
     create home products page (show all product)
     create product page (show the selected product)
     create regester,login and logout page
+    create new product listing form
 
 # step2
     initialize git
