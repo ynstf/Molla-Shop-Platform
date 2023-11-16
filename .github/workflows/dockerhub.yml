@@ -1,12 +1,21 @@
 name: Build and Push Docker image to Docker Hub
 
-on: push
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
 jobs:
   test_django_job:
-    uses: ynstf/Molla-Shop-Platform/.github/workflows/django.yml@main
+    uses: ./.github/workflows/django.yml
+
+jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
+    needs: test_django_job
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
