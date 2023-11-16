@@ -16,11 +16,21 @@ Intelligent E-commerce Platform: NLP, Computer Vision, and Recommendations
     <<<<<<>>>>>> creat test.py in django
 
 # step3
+
     build docker image
+	use database with my app by docer-compse
     add secrets to github secrets
 
     push to docker hub
     create .env with database details mysql
-    use database with my app by docer-compse
+    
+
+# step4
+    create cloud service account
+    build continers on k8s
+    make deployment
+    make service 
+    make secrets from .env ENTERYPOINT.sh
+    CD with Github actions depend on CI
 
 
