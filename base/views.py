@@ -32,7 +32,7 @@ def product(request,pk):
     return render(request,"base/product.html",context)
 
 def register(request):
-    title = "Create an Account"
+    title = "Create an account"
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
