@@ -1,6 +1,5 @@
 env
 .vscode
-static/
 media
 
 # Byte-compiled / optimized / DLL files
