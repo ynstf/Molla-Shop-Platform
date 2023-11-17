@@ -7,6 +7,8 @@ Intelligent E-commerce Platform: NLP, Computer Vision, and Recommendations
     create product page (show the selected product)
     create regester,login and logout page
     create new product listing form
+    <<<<<<>>>>>> fixe category issus
+    <<<<<<>>>>>> fixe images sizes
 
 # step2
     initialize git
@@ -18,10 +20,9 @@ Intelligent E-commerce Platform: NLP, Computer Vision, and Recommendations
 # step3
 
     build docker image
-	use database with my app by docer-compse
-    add secrets to github secrets
-
     push to docker hub
+	<<<<<<>>>>>> use database with my app by docer-compse
+    add secrets to github secrets
     create .env with database details mysql
     
 

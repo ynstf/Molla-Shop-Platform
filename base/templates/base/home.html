@@ -3,6 +3,13 @@
 <h3>{{ product.id }} . <a href="{% url 'product' product.id %}">{{ product.name }}</a></h3>
 
 {% block content %}
+<style>
+    .img-size{
+	width: 100%;
+	height: 20vw;
+	object-fit: cover;
+    }
+</style>
 
 {% if messages %}
     {% for message in messages %}
@@ -24,7 +31,7 @@
                         <figure class="product-media">
                             <span class="product-label label-circle label-sale">Sale</span>
                             <a href="{% url 'product' product.id %}">
-                                <img src="{{ product.image.url }}" alt="Product image" class="product-image">
+                                <img src="{{ product.image.url }}" alt="Product image" class="img-size">
                             </a>
     
                             <div class="product-action-vertical">

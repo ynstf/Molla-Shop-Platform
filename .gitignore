@@ -1,12 +1,13 @@
 env
 .vscode
-migrations
-static
+static/
+media
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+media/
 
 # C extensions
 *.so

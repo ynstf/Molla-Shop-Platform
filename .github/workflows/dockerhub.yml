@@ -29,6 +29,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
-          context: /
+          context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/molla:latest
