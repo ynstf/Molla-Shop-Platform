@@ -1,0 +1,16 @@
+#!/bin/bash
+
+cd /app/
+
+cat << EOF >> .env
+DEBUG = 1
+DJANGO_SUPERUSER_USERNAME = root
+DJANGO_SUPERUSER_EMAIL = yns@yns.yns
+DJANGO_SUPERUSER_PASSWORD = root
+POSTGRES_HOST = localhost
+POSTGRES_PORT = 5432
+POSTGRES_DB=postgres
+POSTGRES_NAME=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+EOF
