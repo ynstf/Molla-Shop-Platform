@@ -3,8 +3,8 @@ version: "3.9"
 services:
   db:
     image: postgres
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
+    #volumes:
+    #  - ./data/db:/var/lib/postgresql/data
     env_file:
       - .env
     expose:
@@ -22,7 +22,7 @@ services:
     #command: sh -c "sleep 8 && chmod +x /app/migrate.sh && sh /app/migrate.sh && chmod +x /app/createsuperuser.sh && sh /app/createsuperuser.sh && /app/entrypoint.sh"
     command: sh -c "sleep 8 && chmod +x /app/createnv.sh && sh /app/createnv.sh && chmod +x /app/migrate.sh && sh /app/migrate.sh && chmod +x /app/createsuperuser.sh && sh /app/createsuperuser.sh && /app/entrypoint.sh"
     volumes:
-      - .:/code
+      - .:/app
     ports:
       - "8000:8000"
 

@@ -130,9 +130,9 @@
                                 <div class="product-details-footer">
                                     <div class="product-cat">
                                         <span>Category:</span>
-                                        {% for category in categories %}
+                                        {% for category in categories_of_product %}
                                             
-                                            <a href="#">{{ category.category_name }}</a>,
+                                            <a href="{% url 'home' %}?search={{category.category_name}}">{{ category.category_name }}</a>,
                                         {% endfor %}
                                     </div><!-- End .product-cat -->
 

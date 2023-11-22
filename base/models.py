@@ -29,8 +29,16 @@ class Product(models.Model):
     product_with_model = models.ImageField(upload_to="products_images/",default='../static/default_product.png')
     product_back = models.ImageField(upload_to="products_images/",default='../static/default_product.png')
 
+    #created_at = models.DateTimeField(editable=False,null=True,blank=True)
+    #updated_at = models.DateTimeField(editable=False,null=True,blank=True)
+
     def __str__(self):
         return self.name
+    """def save(self, *args, **kwargs):
+        if not self.id:
+            self.created_at = now()
+        self.updated_at = now()
+        super().save(*args, **kwargs)"""
 
 class Rate(models.Model):
     product = models.OneToOneField(Product,on_delete=models.CASCADE)

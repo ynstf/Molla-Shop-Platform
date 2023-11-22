@@ -51,7 +51,7 @@
                                                 <i class="fa fa-angle-down"></i>
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="myaccount">
-                                                <a class="dropdown-item" href="my-account.html">my account</a>
+                                                <a class="dropdown-item" href="{% url 'dashboard' %}">my account</a>
                                                 <a class="dropdown-item" href="{% url 'listing' %}"> Listing new product
                                                 </a>
                                                 <a class="dropdown-item" href="login-register.html">add new category</a>
@@ -88,11 +88,11 @@
                         <div class="header-center">
                             <div class="header-search header-search-extended header-search-visible d-none d-lg-block">
                                 <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-                                <form action="#" method="get">
+                                <form action="{% url 'home' %}" method="get">
                                     <div class="header-search-wrapper search-wrapper-wide">
                                         <label for="q" class="sr-only">Search</label>
                                         <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
-                                        <input type="search" class="form-control" name="q" id="q" placeholder="Search product ..." required>
+                                        <input type="search" class="form-control" name="search" id="q" placeholder="Search product ..." required>
                                     </div><!-- End .header-search-wrapper -->
                                 </form>
                             </div><!-- End .header-search -->
@@ -161,7 +161,7 @@
     
                                             <figure class="product-image-container">
                                                 <a href="product.html" class="product-image">
-                                                    <img src="{% static 'assets/images/products/cart/product-1.jpg'}" alt="product">
+                                                    <img src="{% static 'assets/images/products/cart/product-1.jpg' %}" alt="product">
                                                 </a>
                                             </figure>
                                             <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
@@ -181,7 +181,7 @@
     
                                             <figure class="product-image-container">
                                                 <a href="product.html" class="product-image">
-                                                    <img src="{% static 'assets/images/products/cart/product-2.jpg'}" alt="product">
+                                                    <img src="{% static 'assets/images/products/cart/product-2.jpg' %}" alt="product">
                                                 </a>
                                             </figure>
                                             <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
@@ -216,16 +216,11 @@
                                     <nav class="side-nav">
                                         <ul class="menu-vertical sf-arrows">
                                             <li class="item-lead"><a href="#">Daily offers</a></li>
-                                            <li class="item-lead"><a href="#">Gift Ideas</a></li>
-                                            <li><a href="#">Beds</a></li>
-                                            <li><a href="#">Lighting</a></li>
-                                            <li><a href="#">Sofas & Sleeper sofas</a></li>
-                                            <li><a href="#">Storage</a></li>
-                                            <li><a href="#">Armchairs & Chaises</a></li>
-                                            <li><a href="#">Decoration </a></li>
-                                            <li><a href="#">Kitchen Cabinets</a></li>
-                                            <li><a href="#">Coffee & Tables</a></li>
-                                            <li><a href="#">Outdoor Furniture </a></li>
+                                            {% for caty in categories %}
+
+                                            <li><a href="{% url 'home' %}?search={{caty.category_name}}">{{caty.category_name}}</a></li>
+
+                                            {% endfor %}
                                         </ul><!-- End .menu-vertical -->
                                     </nav><!-- End .side-nav -->
                                 </div><!-- End .dropdown-menu -->
@@ -287,7 +282,7 @@
                                                 <div class="col-md-4">
                                                     <div class="banner banner-overlay">
                                                         <a href="category.html" class="banner banner-menu">
-                                                            <img src="{% static 'assets/images/menu/banner-1.jpg'}" alt="Banner">
+                                                            <img src="{% static 'assets/images/menu/banner-1.jpg' %}" alt="Banner">
     
                                                             <div class="banner-content banner-content-top">
                                                                 <div class="banner-title text-white">Last <br>Chance<br><span><strong>Sale</strong></span></div><!-- End .banner-title -->
@@ -322,7 +317,7 @@
                                                 <div class="col-md-6">
                                                     <div class="banner banner-overlay">
                                                         <a href="category.html">
-                                                            <img src="{% static 'assets/images/menu/banner-2.jpg'}" alt="Banner">
+                                                            <img src="{% static 'assets/images/menu/banner-2.jpg' %}" alt="Banner">
     
                                                             <div class="banner-content banner-content-bottom">
                                                                 <div class="banner-title text-white">New Trends<br><span><strong>spring 2019</strong></span></div><!-- End .banner-title -->
@@ -440,9 +435,9 @@
         <div class="mobile-menu-wrapper">
             <span class="mobile-menu-close"><i class="icon-close"></i></span>
             
-            <form action="#" method="get" class="mobile-search">
+            <form action="{% url 'home' %}" method="get" class="mobile-search">
                 <label for="mobile-search" class="sr-only">Search</label>
-                <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search in..." required>
+                <input type="search" class="form-control" name="search" id="mobile-search" placeholder="Search in..." required>
                 <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
             </form>
 
@@ -611,16 +606,10 @@
                     <nav class="mobile-cats-nav">
                         <ul class="mobile-cats-menu">
                             <li><a class="mobile-cats-lead" href="#">Daily offers</a></li>
-                            <li><a class="mobile-cats-lead" href="#">Gift Ideas</a></li>
-                            <li><a href="#">Beds</a></li>
-                            <li><a href="#">Lighting</a></li>
-                            <li><a href="#">Sofas & Sleeper sofas</a></li>
-                            <li><a href="#">Storage</a></li>
-                            <li><a href="#">Armchairs & Chaises</a></li>
-                            <li><a href="#">Decoration </a></li>
-                            <li><a href="#">Kitchen Cabinets</a></li>
-                            <li><a href="#">Coffee & Tables</a></li>
-                            <li><a href="#">Outdoor Furniture </a></li>
+                            {% for caty in categories %}
+                                <li><a href="{% url 'home' %}?search={{caty.category_name}}">{{caty.category_name}}</a></li>
+                            {% endfor %}
+                            
                         </ul><!-- End .mobile-cats-menu -->
                     </nav><!-- End .mobile-cats-nav -->
                 </div><!-- .End .tab-pane -->
