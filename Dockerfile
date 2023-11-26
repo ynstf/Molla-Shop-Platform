@@ -1,5 +1,6 @@
-FROM python:3.9.7-slim
+FROM python:3.9.7
 
+ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 RUN python3 -m venv /opt/venv
