@@ -10,7 +10,7 @@ Intelligent E-commerce Platform: NLP, Computer Vision, and Recommendations
     create new product listing form
     fixe category issus
     search for products
-    <<<<<<>>>>>> Profile 
+    <<>> Profile 
     <<<<<<>>>>>> register in website by gmail or (confirmation)
     <<<<<<>>>>>> manage paginations
     <<<<>>>> create a set of category and products 
@@ -30,21 +30,25 @@ Intelligent E-commerce Platform: NLP, Computer Vision, and Recommendations
 	use database with my app by docer-compse
     add secrets to github secrets
     create .env with database details mysql + secret
-    
+
+## step3.5
+    <<<<<<<>>>>>>> build messages aplication
+    build auth aplication
+    <<<<<<<>>>>>>> connect the microservices
 
 ## step4
     create cloud service account
     structur of deployments in k8s
     build continers on k8s
-    make deployment
-    make service 
-    make secrets from .env ENTERYPOINT.sh
-    CD with Github actions depend on CI
+    <<<<<<>>>>>> make deployment
+    <<<<<<>>>>>> make service 
+    <<<<<<>>>>>> make secrets from .env ENTERYPOINT.sh
+    <<<<<<>>>>>> CD with Github actions and degital ocean depend on CI
 
 
 # AI Microservices
 # step1
-    <<<<<<>>>>>> create the policy of website
+    create the policy of website
     <<<<<<>>>>>> create and scrap data of product with policy and not with
 
 

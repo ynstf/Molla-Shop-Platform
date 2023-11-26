@@ -16,26 +16,31 @@
                     <form method="POST">
                         {% csrf_token %}
 
-                        <!-- errors -->
+                        <!-- errors 
                         {% if form.non_field_errors %}
                             {% for error in form.non_field_errors %}
                                 {% if forloop.last %}
                                 <small class="text-danger">{{ error }}</small>
                                 {% endif %}
                             {% endfor %}
+                        {% endif %}-->
+
+                        <!-- errors -->
+                        {% if errors %}
+                            <small class="text-danger">{{ errors }}</small>
                         {% endif %}
 
 
                         <div class="form-group">
                             <label for="register-email-2">Your username *</label>
-                            <{{ form.username|cut:"<"|cut:">" }} class="form-control">
+                            <input type="text" name="username" value="admin1" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username" class="form-control">
                             <small class="text-danger">{{ form.username.errors }}</small>
                             
                         </div><!-- End .form-group -->
 
                         <div class="form-group">
                             <label for="register-password-2">Password *</label>
-                            <{{ form.password|cut:"<"|cut:">" }} class="form-control">
+                            <input type="password" name="password" autocomplete="current-password" required="" id="id_password" class="form-control">
                             <small class="text-danger">{{ form.password1.errors }}</small>
                             
                         </div><!-- End .form-group -->
