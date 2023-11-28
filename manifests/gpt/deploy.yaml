@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: molla
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: molla
+  template:
+    metadata:
+      labels:
+        app: molla
+    spec:
+      containers:
+        - name: molla
+          image: yoness/molla:latest
+          envFrom:
+            - configMapRef:
+                name: gateway-configmap
+            - secretRef:
+                name: gateway-secret
+          ports:
+            - containerPort: 8000

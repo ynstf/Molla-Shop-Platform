@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: gateway-configmap
 data:
-  AUTH_SVC_ADDRESS: "auth:5000"
+  DJANGO_ALLOWED_HOSTS : localhost molla 127.0.0.1
