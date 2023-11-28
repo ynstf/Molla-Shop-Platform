@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-web-srvc
+  labels:
+    app: djangoweb
+spec:
+  ports:
+    - port: 8000
+  selector:
+    app: django
+  type: LoadBalancer
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: django-deployment
+  labels:
+    app: django
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: django
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 3
+  template:
+    metadata:
+      labels:
+        app: django
+    spec:
+      containers:
+      - image: yoness/molla
+        name: django
+        ports:
+        - containerPort: 8000
+          name: django

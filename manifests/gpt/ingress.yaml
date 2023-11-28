@@ -4,7 +4,7 @@ metadata:
   name: molla
 spec:
   rules:
-    - host: localhost  # Update this with your domain or use localhost for local testing
+    - host: molla  # Update this with your domain or use localhost for local testing
       http:
         paths:
           - pathType: Prefix

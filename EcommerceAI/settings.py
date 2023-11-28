@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-e-b5r^vw!o=z^*b=fbh!_e*bmetilq8qouwvusfm%tz&j(oznl
 DEBUG = True
 
 #print(os.environ.get("DJANGO_ALLOWED_HOSTS").split(" "))
-ALLOWED_HOSTS = ['localhost','molla','127.0.0.1']
+ALLOWED_HOSTS = ["*"]
 #ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 

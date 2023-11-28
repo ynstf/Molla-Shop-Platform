@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: molla
-          image: yoness/molla:latest
+          image: yoness/molla
           envFrom:
             - configMapRef:
                 name: gateway-configmap
