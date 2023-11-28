@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: molla
+  name: molla-deployment
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: molla
+      app: molla-deployment
   template:
     metadata:
       labels:
-        app: molla
+        app: molla-deployment
     spec:
       containers:
         - name: molla
@@ -18,7 +18,5 @@ spec:
           envFrom:
             - configMapRef:
                 name: gateway-configmap
-            - secretRef:
-                name: gateway-secret
           ports:
             - containerPort: 8000

@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,authenticate
 import requests
+import os
 
 # Create your views here.
 def home(request):
@@ -59,7 +60,7 @@ def register(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password1']
 
-            url = 'http://127.0.0.1:7777/api/register'
+            url = f"http://{os.environ.get('AUTH_SVC_ADDRESS')}/api/register"
             myobj = {
                 "username":username,
                 "email":email,
@@ -90,7 +91,7 @@ def Login(request):
         username = request.POST['username']
         password = request.POST['password']
 
-        url = 'http://127.0.0.1:7777/api/login'
+        url = f"http://{os.environ.get('AUTH_SVC_ADDRESS')}/api/login"
         myobj = {
             "username":username,
             "password":password
@@ -104,7 +105,7 @@ def Login(request):
             response = redirect("home")
             response.set_cookie(key='jwt', value=token, httponly=True)
             #set jwt cookie
-            url = "http://127.0.0.1:7777/api/user"
+            url = f"http://{os.environ.get('AUTH_SVC_ADDRESS')}/api/user"
             token = {'jwt':request.COOKIES.get('jwt')}
             x = requests.get(url,data=token)
             #login with user
