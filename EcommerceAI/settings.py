@@ -16,7 +16,10 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-#ports
+#endpoints
+auth_endpoint = os.environ.get('AUTH_SVC_ADDRESS')
+policy_endpoint = os.environ.get('POLICY_SVC_ADDRESS')
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/

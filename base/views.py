@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,authenticate
 import requests
 import os
+from EcommerceAI.settings import auth_endpoint, policy_endpoint
 
 # Create your views here.
 
@@ -63,7 +64,7 @@ def register(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password1']
 
-            url = f"http://{os.environ.get('AUTH_SVC_ADDRESS')}/api/register"
+            url = f"http://{auth_endpoint}/api/register"
             myobj = {
                 "username":username,
                 "email":email,
@@ -94,7 +95,7 @@ def Login(request):
         username = request.POST['username']
         password = request.POST['password']
 
-        url = f"http://{os.environ.get('AUTH_SVC_ADDRESS')}/api/login"
+        url = f"http://{auth_endpoint}/api/login"
         myobj = {
             "username":username,
             "password":password
@@ -108,7 +109,7 @@ def Login(request):
             response = redirect("home")
             response.set_cookie(key='jwt', value=token, httponly=True)
             #set jwt cookie
-            url = f"http://{os.environ.get('AUTH_SVC_ADDRESS')}/api/user"
+            url = f"http://{auth_endpoint}/api/user"
             token = {'jwt':request.COOKIES.get('jwt')}
             x = requests.get(url,data=token)
             #login with user
@@ -173,7 +174,7 @@ def dashboard(request):
 #policy point
 def policy(request):
     title = 'MOLLA - Policy'
-    url = "http://127.0.0.1:9999/"
+    url = f"http://{policy_endpoint}"
     response = requests.get(url)
     response = (json.loads(response.content))['page']
     content = response.items()

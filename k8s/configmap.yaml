@@ -4,3 +4,4 @@ metadata:
   name: molla-configmap
 data:
   AUTH_SVC_ADDRESS: "auth:7777"
+  POLICY_SVC_ADDRESS: "policy:9999"
