@@ -15,7 +15,7 @@ Intelligent E-commerce Platform: NLP, Computer Vision, and Recommendations
     <<<<<<>>>>>> manage paginations
     <<<<>>>> create a set of category and products 
     <<<>>>> fixe images sizes
-    <<<>>> add 404 not found
+    add errors pages
     <<<<<<<>>>>>>> add message page
 
 ## step2

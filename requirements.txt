@@ -18,3 +18,4 @@ boto3
 Pillow
 django-widget-tweaks
 mysqlclient
+WhiteNoise

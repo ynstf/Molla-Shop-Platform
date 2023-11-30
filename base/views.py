@@ -173,8 +173,14 @@ def dashboard(request):
 #policy point
 def policy(request):
     title = 'MOLLA - Policy'
+    url = "http://127.0.0.1:9999/"
+    response = requests.get(url)
+    response = (json.loads(response.content))['page']
+    content = response.items()
+    #print(content)
     context = {
         "title":title,
+        "content":content
     }
     return render(request, "base/policy.html", context)
 
