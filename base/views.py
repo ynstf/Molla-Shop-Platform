@@ -10,6 +10,9 @@ import requests
 import os
 
 # Create your views here.
+
+
+#home page
 def home(request):
     title = "MOLLA - Home"
 
@@ -34,7 +37,7 @@ def home(request):
     }
     return render(request,"base/home.html",context)
 
-
+#product page
 def product(request,pk):
     product = Product.objects.get(pk=pk)
     title = product.name
@@ -49,7 +52,7 @@ def product(request,pk):
         }
     return render(request,"base/product.html",context)
 
-
+#registration point
 def register(request):
     title = "Create an Account"
     categories = Category.objects.all()
@@ -82,7 +85,7 @@ def register(request):
     }
     return render(request, "base/register.html", context)
 
-
+#login point
 def Login(request):
     title = "Login"
     categories = Category.objects.all()
@@ -126,7 +129,7 @@ def Login(request):
 
     return render(request,'base/login.html',context)
 
-
+#add product
 @login_required
 def listing(request):
     title = 'add new product'
@@ -155,7 +158,7 @@ def listing(request):
     }
     return render(request, "base/listing.html", context)
 
-
+#profile page
 @login_required
 def dashboard(request):
     title = 'MOLLA - dashboard'
@@ -167,7 +170,7 @@ def dashboard(request):
     }
     return render(request, "base/dashboard.html", context)
 
-
+#policy point
 def policy(request):
     title = 'MOLLA - Policy'
     context = {
@@ -175,9 +178,44 @@ def policy(request):
     }
     return render(request, "base/policy.html", context)
 
+#end sessions
 def Logout(request):
 
     response = redirect("home")
     response.delete_cookie('sessionid')
     response.delete_cookie('jwt')
     return response
+
+#errors pages
+def custom_page_not_found_view(request, exception):
+    title = 'Page Not Found'
+    message = "We couldn't find the page you were looking for. 404"
+    context = {
+        'title': title,
+        'message': message
+    }
+    return render(request, "errors.html", context, status=404)
+def custom_error_view(request, exception=None):
+    title = 'Server Error'
+    message = 'server error 500'
+    context = {
+        'title': title,
+        'message': message
+    }
+    return render(request, "errors.html", context, status=500)
+def custom_permission_denied_view(request, exception=None):
+    title = 'Permission Denied'
+    message = 'Permission denied 403'
+    context = {
+        'title': title,
+        'message': message
+    }
+    return render(request, "errors.html", context, status=403)
+def custom_bad_request_view(request, exception=None):
+    title = 'Bad Request'
+    message = 'bad request 400'
+    context = {
+        'title': title,
+        'message': message
+    }
+    return render(request, "errors.html", context, status=400)

@@ -17,6 +17,6 @@ spec:
           image: yoness/molla
           envFrom:
             - configMapRef:
-                name: gateway-configmap
+                name: molla-configmap
           ports:
             - containerPort: 8000

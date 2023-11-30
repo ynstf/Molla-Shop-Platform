@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-e-b5r^vw!o=z^*b=fbh!_e*bmetilq8qouwvusfm%tz&j(oznl
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = str(os.environ.get('DEBUG')) == "1"
-DEBUG = True
+DEBUG = False
 
 #print(os.environ.get("DJANGO_ALLOWED_HOSTS").split(" "))
 ALLOWED_HOSTS = ["*"]
@@ -53,6 +53,7 @@ LOGIN_URL = 'login'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

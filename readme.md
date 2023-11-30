@@ -1,6 +1,6 @@
 Intelligent E-commerce Platform: NLP, Computer Vision, and Recommendations
 
-# websit
+# websit microservices
 ## step1
     create first layout of website
     create database models (tables)
@@ -15,13 +15,15 @@ Intelligent E-commerce Platform: NLP, Computer Vision, and Recommendations
     <<<<<<>>>>>> manage paginations
     <<<<>>>> create a set of category and products 
     <<<>>>> fixe images sizes
+    <<<>>> add 404 not found
+    <<<<<<<>>>>>>> add message page
 
 ## step2
     initialize git
     put remote of github repo
     push project to github
     create first CI
-    <<<<<<>>>>>> creat test.py in django
+    <<<<<<>>>>>> create test.py in django
 
 ## step3
 
@@ -33,8 +35,12 @@ Intelligent E-commerce Platform: NLP, Computer Vision, and Recommendations
 
 ## step3.5
     <<<<<<<>>>>>>> build messages aplication
+    <<<<<<<>>>>>>> build products aplication
+    <<<<<<<>>>>>>> build searsh aplication
+    <<<<<<<>>>>>>> build messages aplication
+    <<<<<<<>>>>>>> build policy aplication
     build auth aplication
-    <<<<<<<>>>>>>> connect the microservices
+    <<<<>>>> connect the microservices
 
 ## step4
     create cloud service account
@@ -50,5 +56,7 @@ Intelligent E-commerce Platform: NLP, Computer Vision, and Recommendations
 # step1
     create the policy of website
     <<<<<<>>>>>> create and scrap data of product with policy and not with
+    <<<<<>>>>> create model to classify the products in policy or out
+    <<<<<>>>>> create model to recommand the products to users
 
 

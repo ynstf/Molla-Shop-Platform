@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <style>
+        #nfound {
+            width: 50%;
+            margin: auto;
+            height: 100vh;
+            text-align: center;
+            max-width: 600px;
+        }
+        .emoji {
+                font-size: 8rem;
+                margin-bottom: 20px;
+            }
+    </style>
+    
+
+    <div id="nfound" class="container">
+        <div class="emoji">😕</div>
+        <h1>Oops! Page Not Found</h1>
+        <p>{{ message }}</p> <br>
+        <a class="btn btn-primary" href="/">Go back to Home</a>
+    </div>
+
+    {% endblock content %}
