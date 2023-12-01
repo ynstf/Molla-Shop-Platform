@@ -35,7 +35,7 @@
                             <div class="product-gallery product-gallery-vertical">
                                 <div class="row">
                                     <figure class="product-main-image">
-                                        <img id="product-zoom" src="{{ product.image.url }}" data-zoom-image="{{ product.image.url }}" alt="product image">
+                                        <img id="product-zoom" src="../../{{ product.image }}" data-zoom-image="{{ product.image.url }}" alt="product image">
 
                                         <a href="#" id="btn-product-gallery" class="btn-product-gallery">
                                             <i class="icon-arrows"></i>
@@ -44,19 +44,19 @@
 
                                     <div id="product-zoom-gallery" class="product-image-gallery">
                                         <a class="product-gallery-item active" href="#" data-image="{{ product.product_side.url }}" data-zoom-image="{{ product.product_side.url }}">
-                                            <img src="{{ product.product_side.url }}" alt="product side">
+                                            <img src="../../{{ product.product_side }}" alt="product side">
                                         </a>
 
                                         <a class="product-gallery-item" href="#" data-image="{{ product.product_cross.url }}" data-zoom-image="{{ product.product_cross.url }}">
-                                            <img src="{{ product.product_cross.url }}" alt="product cross">
+                                            <img src="../../{{ product.product_cross }}" alt="product cross">
                                         </a>
 
                                         <a class="product-gallery-item" href="#" data-image="{{ product.product_with_model.url }}" data-zoom-image="{{ product.product_with_model.url }}">
-                                            <img src="{{ product.product_with_model.url }}" alt="product with model">
+                                            <img src="../../{{ product.product_with_model }}" alt="product with model">
                                         </a>
                                         {% if product.product_back.url %}
                                         <a class="product-gallery-item" href="#" data-image="{{ product.product_back.url }}" data-zoom-image="{{ product.product_back.url }}">
-                                            <img src="{{ product.product_back.url }}" alt="product back">
+                                            <img src="../../{{ product.product_back }}" alt="product back">
                                         </a>
                                         {% endif %}
                                     </div><!-- End .product-image-gallery -->
@@ -132,7 +132,7 @@
                                         <span>Category:</span>
                                         {% for category in categories_of_product %}
                                             
-                                            <a href="{% url 'home' %}?search={{category.category_name}}">{{ category.category_name }}</a>,
+                                            <a href="{% url 'home' %}?category={{category.category_name}}">{{ category.category_name }}</a>,
                                         {% endfor %}
                                     </div><!-- End .product-cat -->
 

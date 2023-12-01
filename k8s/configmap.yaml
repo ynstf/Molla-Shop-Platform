@@ -5,3 +5,6 @@ metadata:
 data:
   AUTH_SVC_ADDRESS: "auth:7777"
   POLICY_SVC_ADDRESS: "policy:9999"
+  PRODUCT_SVC_ADDRESS: "product:5555"
+  SEARCH_SVC_ADDRESS: "search:5550"
+  CATEGORY_SVC_ADDRESS: "category:5500"

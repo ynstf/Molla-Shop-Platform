@@ -218,7 +218,7 @@
                                             <li class="item-lead"><a href="#">Daily offers</a></li>
                                             {% for caty in categories %}
 
-                                            <li><a href="{% url 'home' %}?search={{caty.category_name}}">{{caty.category_name}}</a></li>
+                                            <li><a href="{% url 'home' %}?category={{caty.category_name}}">{{caty.category_name}}</a></li>
 
                                             {% endfor %}
                                         </ul><!-- End .menu-vertical -->

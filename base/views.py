@@ -16,7 +16,7 @@ from EcommerceAI.settings import auth_endpoint, policy_endpoint
 #home page
 def home(request):
     title = "MOLLA - Home"
-
+    """
     #q = request.GET.get("q") if request.GET.get("q") != None else ''
     search = request.GET.get("search") if request.GET.get("search") != None else ''
     #print(search)
@@ -27,29 +27,72 @@ def home(request):
         Q(name__contains=search) | 
         Q(description__contains=search) |
         Q(category__category_name__icontains=search)
-        )
+        ).distinct()"""
     
     categories = Category.objects.all()
     
+    page = request.GET.get('page', 1)  # Get the requested page number, default to 1
+    search = request.GET.get("search") if request.GET.get("search") != None else ''
+    category = request.GET.get("category") if request.GET.get("category") != None else ''
+    if category != '':
+        cate = Category.objects.get(category_name=category)
+        url = f'http://127.0.0.1:5500/search?category={cate.id}&page={page}'
+        myproducts = requests.get(url)
+        products = json.loads(myproducts.content.decode('utf-8'))#.get('results', [])
+        print(products)
+
+
+
+    elif search != '':
+        url = f'http://127.0.0.1:5550/shearch?search={search}&page={page}'
+        myproducts = requests.get(url)
+        products = json.loads(myproducts.content.decode('utf-8'))#.get('results', [])
+        
+    
+    else :
+        url = f'http://127.0.0.1:5555/showproducts?page={page}'
+        myproducts = requests.get(url)
+        products = json.loads(myproducts.content.decode('utf-8'))
+
     context = {
-        "title":title,
-        "products":products,
-        "categories":categories,
+        "title": title,
+        "products": products['results'],
+        "num_pages": products['num_pages'],
+        "current_page": products['current_page'],
+        "next_page": products['next_page'],
+        "previous_page": products['previous_page'],
+        "categories": categories,
+        "search":search,
+        "category": category
     }
-    return render(request,"base/home.html",context)
+    return render(request, "base/home.html", context)
 
 #product page
 def product(request,pk):
-    product = Product.objects.get(pk=pk)
-    title = product.name
-    categories_of_product = product.category.all()
-    categories = Category.objects.all()
-    
+
+    #extract all categories in database
+    categories_url = "http://127.0.0.1:5500/categorie"
+    categories = json.loads(requests.get(categories_url).content.decode('utf-8'))
+
+
+    #extract infos from product api
+    product_url = f'http://127.0.0.1:5555/showproducts/{pk}'
+    myproduct = requests.get(product_url)
+    product = json.loads(myproduct.content.decode('utf-8'))
+
+    #page name
+    title = product['name']
+
+    #extract the categories in product from category api
+    categorie_url = f'http://127.0.0.1:5500/categorie/{pk}'
+    categories_of_product = json.loads(requests.get(categorie_url).content.decode('utf-8'))
+
+
     context = {
         "title":title,
         "product":product,
-        "categories_of_product":categories_of_product,
-        "categories":categories,
+        "categories_of_product":categories_of_product['results'],
+        "categories":categories['results'],
         }
     return render(request,"base/product.html",context)
 
@@ -138,17 +181,43 @@ def listing(request):
     if request.method == "POST":
         form = ProductForm(request.POST,request.FILES)
         if form.is_valid():
-            catigories_id= dict(request.POST.lists())["category"]
-            new_product = form.save(commit = False)
-            new_product.user = request.user
-            new_product.save()
-            for i in catigories_id:
-                #print(i)
-                c = Category.objects.get(pk=i)
-                new_product.category.add(c)
+            #check if the images are exist
+            if 'image' in request.FILES:
+                image = request.FILES['image'].name
+            else :
+                image = ""
+            if 'product_side' in request.FILES:
+                product_side = request.FILES['product_side'].name
+            else :
+                product_side = ""
+            if 'product_cross' in request.FILES:
+                product_cross = request.FILES['product_cross'].name
+            else :
+                product_cross = ""
+            if 'product_with_model' in request.FILES:
+                product_with_model = request.FILES['product_with_model'].name
+            else :
+                product_with_model = ""
+            if 'product_back' in request.FILES:
+                product_back = request.FILES['product_back'].name
+            else :
+                product_back = ""
 
-            messages.success(request, 'The product has been created successfully')
-            return redirect("home")
+            images = {
+                "image" : image,
+                "product_side" : product_side,
+                "product_cross" : product_cross,
+                "product_with_model" : product_with_model,
+                "product_back": product_back
+            }
+            
+            url = 'http://127.0.0.1:5555/postproducts'
+            data = {'request':dict(request.POST.lists()),'user':request.user.id,'images':images}
+            x = requests.post(url,json=data)
+            if int(x.content.decode('utf8')) == 1 :
+                messages.success(request, 'The product has been created successfully')
+                return redirect("home")
+            
     else:
         form = ProductForm()
 

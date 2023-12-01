@@ -32,7 +32,7 @@
                         <figure class="product-media">
                             <span class="product-label label-circle label-sale">Sale</span>
                             <a href="{% url 'product' product.id %}">
-                                <center><img src="{{ product.image.url }}" alt="Product image" class="product-image"></center> <!--class="product-image"-->
+                                <center><img src="{{ product.image }}" alt="Product image" class="product-image"></center> <!--class="product-image"-->
                             </a>
     
                             <div class="product-action-vertical">
@@ -78,6 +78,24 @@
 </div>
 </div>
 
+<center>
+    <div class="pagination" style="text-align: center;display: inline-block;;">
+    <span class="step-links">
+        {% if previous_page %}
+        <a href="?page=1&search={{ search }}&category={{ category }}">&laquo; first</a>
+        <a href="?page={{ previous_page }}&search={{ search }}&category={{ category }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+        Page {{ current_page }} of {{ num_pages }}.
+        </span>
+
+        {% if next_page %}
+        <a href="?page={{ next_page }}&search={{ search }}&category={{ category }}">next</a>
+        <a href="?page={{ num_pages }}&search={{ search }}&category={{ category }}">last &raquo;</a>
+        {% endif %}
+    </span>
+    </div>
+</center>
+
 {% endblock content %}
-
-

@@ -17,8 +17,11 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 #endpoints
-auth_endpoint = os.environ.get('AUTH_SVC_ADDRESS')
-policy_endpoint = os.environ.get('POLICY_SVC_ADDRESS')
+auth_endpoint = os.environ.get('AUTH_SVC_ADDRESS') or '127.0.0.1:7777'
+policy_endpoint = os.environ.get('POLICY_SVC_ADDRESS') or '127.0.0.1:9999'
+product_endpoint = os.environ.get('PRODUCT_SVC_ADDRESS') or '127.0.0.1:5555'
+search_endpoint = os.environ.get('SEARCH_SVC_ADDRESS') or '127.0.0.1:5550'
+category_endpoint = os.environ.get('CATEGORY_SVC_ADDRESS') or '127.0.0.1:5500'
 
 
 # Quick-start development settings - unsuitable for production
@@ -95,22 +98,15 @@ WSGI_APPLICATION = 'EcommerceAI.wsgi.application'
 
 
 
-'''DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_NAME'),
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': 'db',
-        'PORT': 5432, #default port you don't need to mention in docker-compose
-    }
-}
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}'''
+}"""
+
+#postgres database
 
 DB_DATABASE = 'igxvggzn'
 DB_USERNAME = 'igxvggzn'
@@ -128,6 +124,9 @@ DATABASES = {
             }
 }
 
+
+
+#mysql
 '''
 DATABASES = {  
     'default': {  

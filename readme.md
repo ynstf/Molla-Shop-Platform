@@ -12,7 +12,7 @@ Intelligent E-commerce Platform: NLP, Computer Vision, and Recommendations
     search for products
     <<>> Profile 
     <<<<<<>>>>>> register in website by gmail or (confirmation)
-    <<<<<<>>>>>> manage paginations
+     manage paginations
     <<<<>>>> create a set of category and products 
     <<<>>>> fixe images sizes
     add errors pages
@@ -35,10 +35,10 @@ Intelligent E-commerce Platform: NLP, Computer Vision, and Recommendations
 
 ## step3.5
     <<<<<<<>>>>>>> build messages aplication
-    <<<<<<<>>>>>>> build products aplication
-    <<<<<<<>>>>>>> build searsh aplication
-    <<<<<<<>>>>>>> build messages aplication
-    <<<<<<<>>>>>>> build policy aplication
+    build products aplication
+    build searsh aplication
+    build category aplication
+    build policy aplication
     build auth aplication
     <<<<>>>> connect the microservices
 
