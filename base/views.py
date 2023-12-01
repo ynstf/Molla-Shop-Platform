@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,authenticate
 import requests
 import os
-from EcommerceAI.settings import auth_endpoint, policy_endpoint
+from EcommerceAI.settings import auth_endpoint, policy_endpoint, category_endpoint, search_endpoint, product_endpoint
 
 # Create your views here.
 
@@ -36,7 +36,7 @@ def home(request):
     category = request.GET.get("category") if request.GET.get("category") != None else ''
     if category != '':
         cate = Category.objects.get(category_name=category)
-        url = f'http://127.0.0.1:5500/search?category={cate.id}&page={page}'
+        url = f'http://{category_endpoint}/search?category={cate.id}&page={page}'
         myproducts = requests.get(url)
         products = json.loads(myproducts.content.decode('utf-8'))#.get('results', [])
         print(products)
@@ -44,13 +44,13 @@ def home(request):
 
 
     elif search != '':
-        url = f'http://127.0.0.1:5550/shearch?search={search}&page={page}'
+        url = f'http://{search_endpoint}/shearch?search={search}&page={page}'
         myproducts = requests.get(url)
         products = json.loads(myproducts.content.decode('utf-8'))#.get('results', [])
         
     
     else :
-        url = f'http://127.0.0.1:5555/showproducts?page={page}'
+        url = f'http://{product_endpoint}/showproducts?page={page}'
         myproducts = requests.get(url)
         products = json.loads(myproducts.content.decode('utf-8'))
 
@@ -71,12 +71,12 @@ def home(request):
 def product(request,pk):
 
     #extract all categories in database
-    categories_url = "http://127.0.0.1:5500/categorie"
+    categories_url = f"http://{category_endpoint}/categorie"
     categories = json.loads(requests.get(categories_url).content.decode('utf-8'))
 
 
     #extract infos from product api
-    product_url = f'http://127.0.0.1:5555/showproducts/{pk}'
+    product_url = f'http://{product_endpoint}/showproducts/{pk}'
     myproduct = requests.get(product_url)
     product = json.loads(myproduct.content.decode('utf-8'))
 
@@ -84,7 +84,7 @@ def product(request,pk):
     title = product['name']
 
     #extract the categories in product from category api
-    categorie_url = f'http://127.0.0.1:5500/categorie/{pk}'
+    categorie_url = f'http://{category_endpoint}/categorie/{pk}'
     categories_of_product = json.loads(requests.get(categorie_url).content.decode('utf-8'))
 
 
@@ -211,7 +211,7 @@ def listing(request):
                 "product_back": product_back
             }
             
-            url = 'http://127.0.0.1:5555/postproducts'
+            url = f'http://{product_endpoint}/postproducts'
             data = {'request':dict(request.POST.lists()),'user':request.user.id,'images':images}
             x = requests.post(url,json=data)
             if int(x.content.decode('utf8')) == 1 :
