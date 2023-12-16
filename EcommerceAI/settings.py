@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import cloudinary_storage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -47,9 +48,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
     'base',
     'widget_tweaks',
+    'cloudinary',
 
 ]
 
@@ -98,16 +101,16 @@ WSGI_APPLICATION = 'EcommerceAI.wsgi.application'
 
 
 
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / '../db.sqlite3',
     }
-}"""
+}
 
 #postgres database
-
+"""
 DB_DATABASE = 'igxvggzn'
 DB_USERNAME = 'igxvggzn'
 DB_PASSWORD = 'd1tAH70iAtxdJYrQuPSBICRvgcfhCdHs'
@@ -122,7 +125,7 @@ DATABASES = {
             'HOST': DB_HOST,
             'PORT': 5432, #default port you don't need to mention in docker-compose
             }
-}
+}"""
 
 
 
@@ -142,7 +145,7 @@ DATABASES = {
     }  
 }  
 '''
-
+"""
 DB_USERNAME = os.environ.get("POSTGRES_USER")
 DB_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
 DB_DATABASE = os.environ.get("POSTGRES_DB")
@@ -168,7 +171,7 @@ if DB_IS_AVAIL:
             'PORT': 5432, #default port you don't need to mention in docker-compose
         }
     }
-
+"""
 
 
 
@@ -222,3 +225,9 @@ MEDIA_ROOT =os.path.join(BASE_DIR,"media")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dbhawzisa',
+    'API_KEY': '874379634442717',
+    'API_SECRET': os.environ.get('api_secret')
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

@@ -9,6 +9,8 @@ from django.contrib.auth import login,authenticate
 import requests
 import os
 from EcommerceAI.settings import auth_endpoint, policy_endpoint, category_endpoint, search_endpoint, product_endpoint
+import cloudinary
+from cloudinary.uploader import upload
 
 # Create your views here.
 
@@ -173,6 +175,27 @@ def Login(request):
 
     return render(request,'base/login.html',context)
 
+#singin in cloudinary
+cloudinary.config(
+                    cloud_name = 'dbhawzisa',
+                    api_key = '874379634442717',
+                    api_secret= os.environ.get('api_secret')
+                )
+#upload to cloud
+def upload(img,name):
+    # Define upload options
+    filename, file_extension = os.path.splitext(name)
+    upload_options = {
+        "folder": "/media/products_images/",  # Specify the folder
+        "public_id": filename, # Specify the public ID (file name)
+        "format" : file_extension[1:] ,
+        "version": "v1" ,
+        #"width": width,  # Specify the width (for resizing)
+        #"height": height,  # Specify the height (for resizing)
+    }
+    cloudinary.uploader.upload(img, **upload_options)
+    cloudinary.CloudinaryImage(filename).build_url(version=1)
+
 #add product
 @login_required
 def listing(request):
@@ -215,6 +238,20 @@ def listing(request):
             data = {'request':dict(request.POST.lists()),'user':request.user.id,'images':images}
             x = requests.post(url,json=data)
             if int(x.content.decode('utf8')) == 1 :
+                #save images
+                
+
+                if image !="":
+                    upload(request.FILES['image'],request.FILES['image'].name)
+                if product_side !="":
+                    upload(request.FILES['product_side'],request.FILES['product_side'].name)
+                if product_cross !="":
+                    upload(request.FILES['product_cross'],request.FILES['product_cross'].name)
+                if product_with_model !="":
+                    upload(request.FILES['product_with_model'],request.FILES['product_with_model'].name)
+                if product_back !="":
+                    upload(request.FILES['product_back'],request.FILES['product_back'].name)
+                #redidrect to home
                 messages.success(request, 'The product has been created successfully')
                 return redirect("home")
             
@@ -232,8 +269,6 @@ def listing(request):
 @login_required
 def dashboard(request):
     title = 'MOLLA - dashboard'
-
-
 
     context = {
         "title":title,

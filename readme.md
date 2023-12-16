@@ -33,7 +33,7 @@ Intelligent E-commerce Platform: NLP, Computer Vision, and Recommendations
     add secrets to github secrets
     create .env with database details mysql + secret
 
-## step3.5
+## step3.5 microservices related on platform
     <<<<<<<>>>>>>> build messages aplication
     build products aplication
     build searsh aplication
@@ -46,6 +46,8 @@ Intelligent E-commerce Platform: NLP, Computer Vision, and Recommendations
     create cloud service account
     structur of deployments in k8s
     build continers on k8s
+	<<<>>> run scripts into deployment
+	<<<<>>>> use database as deployment with volumes
     <<<<<<>>>>>> make deployment
     <<<<<<>>>>>> make service 
     <<<<<<>>>>>> make secrets from .env ENTERYPOINT.sh
